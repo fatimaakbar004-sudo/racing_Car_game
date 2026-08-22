@@ -1,0 +1,1142 @@
+/* ==========================================================================
+   ULTIMATE CAR RACING — Neon Grand Prix theme
+   Palette:  void #08040f · panel #120a24 · pink #ff2f92
+             cyan #00e5ff · gold #ffd60a · violet #8b5cf6
+   Type:     Audiowide (display) · Rajdhani (UI) · Share Tech Mono (digits)
+   Signature: checkered-flag divider strips + animated synthwave horizon
+              behind every overlay screen.
+   ========================================================================== */
+
+:root {
+  --void: #08040f;
+  --panel: #120a24;
+  --panel-2: #1a0f30;
+  --line: rgba(139, 92, 246, 0.28);
+
+  --pink: #ff2f92;
+  --cyan: #00e5ff;
+  --gold: #ffd60a;
+  --violet: #8b5cf6;
+
+  --text-hi: #f4f0ff;
+  --text-mid: #a996d1;
+  --text-dim: #6b5c8f;
+
+  --font-display: "Audiowide", "Rajdhani", sans-serif;
+  --font-ui: "Rajdhani", sans-serif;
+  --font-digit: "Share Tech Mono", monospace;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  height: 100%;
+}
+
+body {
+  min-height: 100vh;
+  min-height: 100svh;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  font-family: var(--font-ui);
+  font-weight: 600;
+
+  background:
+    radial-gradient(circle at 50% 20%, #1c1036 0%, var(--void) 55%, #030103 100%);
+
+  color: var(--text-hi);
+
+  overflow-x: hidden;
+  overscroll-behavior: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Checkered-flag divider — the game's recurring signature motif */
+.checker-strip {
+  height: 6px;
+  width: 100%;
+  background-image: repeating-conic-gradient(
+    var(--void) 0deg 90deg,
+    var(--text-hi) 90deg 180deg
+  );
+  background-size: 14px 14px;
+  opacity: 0.9;
+}
+
+/* ---------------------------------- Wrapper ---------------------------------- */
+
+.game-wrapper {
+  width: 100%;
+  max-width: 520px;
+
+  display: flex;
+  flex-direction: column;
+
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  overflow: hidden;
+
+  padding-top: env(safe-area-inset-top, 0px);
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+
+  box-shadow:
+    0 0 0 1px rgba(0, 0, 0, 0.4),
+    0 30px 60px -20px rgba(0, 0, 0, 0.8),
+    0 0 60px -10px rgba(139, 92, 246, 0.25);
+}
+
+/* ---------------------------------- Header ---------------------------------- */
+
+.game-header {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr) 46px 46px;
+  gap: 8px;
+
+  padding: 14px 12px;
+  background: linear-gradient(180deg, #150a29, var(--void));
+}
+
+.stat-box {
+  text-align: center;
+  padding: 6px 2px;
+
+  background: rgba(0, 0, 0, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 10px;
+}
+
+.stat-box span {
+  display: block;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+}
+
+.stat-box strong {
+  display: block;
+  margin-top: 4px;
+  font-family: var(--font-digit);
+  font-size: clamp(13px, 4vw, 17px);
+  letter-spacing: 0.03em;
+}
+
+.stat-box:nth-child(1) strong {
+  color: var(--cyan);
+  text-shadow: 0 0 10px rgba(0, 229, 255, 0.6);
+}
+.stat-box:nth-child(2) strong {
+  color: var(--gold);
+  text-shadow: 0 0 10px rgba(255, 214, 10, 0.6);
+}
+.stat-box:nth-child(3) strong {
+  color: var(--violet);
+  text-shadow: 0 0 10px rgba(139, 92, 246, 0.6);
+}
+.stat-box:nth-child(4) strong {
+  color: var(--pink);
+  text-shadow: 0 0 10px rgba(255, 47, 146, 0.6);
+}
+
+.game-header button {
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  font-size: 17px;
+  cursor: pointer;
+  touch-action: manipulation;
+
+  background: var(--panel-2);
+  color: var(--text-hi);
+  transition: 0.2s ease;
+}
+
+.game-header button:hover {
+  border-color: var(--violet);
+  box-shadow: 0 0 14px rgba(139, 92, 246, 0.5);
+}
+
+.game-header button:active {
+  transform: scale(0.92);
+}
+
+/* ---------------------------------- Nitro ---------------------------------- */
+
+.nitro-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  padding: 9px 16px;
+  background: var(--void);
+
+  font-family: var(--font-ui);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: var(--gold);
+}
+
+.nitro-bar {
+  width: 100%;
+  height: 10px;
+
+  border-radius: 20px;
+  background: #170c2c;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  overflow: hidden;
+}
+
+#nitroFill {
+  width: 100%;
+  height: 100%;
+
+  background: linear-gradient(90deg, var(--cyan), var(--violet), var(--pink));
+  background-size: 200% 100%;
+  box-shadow: 0 0 12px rgba(0, 229, 255, 0.7);
+
+  transition: width 0.2s;
+  animation: nitro-shimmer 3s linear infinite;
+}
+
+@keyframes nitro-shimmer {
+  to {
+    background-position: -200% 0;
+  }
+}
+
+/* ---------------------------------- Game Area ---------------------------------- */
+
+#gameArea {
+  position: relative;
+  width: 100%;
+  height: 650px;
+  flex: 0 0 auto;
+  min-height: 0;
+  overflow: hidden;
+  touch-action: none;
+}
+
+/* Subtle CRT scanline texture over the whole track */
+#gameArea::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 20;
+  pointer-events: none;
+  background: repeating-linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0) 0px,
+    rgba(0, 0, 0, 0) 2px,
+    rgba(0, 0, 0, 0.08) 3px
+  );
+  mix-blend-mode: overlay;
+}
+
+.road {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+/* 3D car layer — sits above the road, below screens/effects */
+#carCanvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 9;
+  display: block;
+  pointer-events: none;
+}
+
+/* Once script.js confirms WebGL/Three.js initialized, it adds this class
+   to #gameArea and hides the flat fallback images so only the 3D cars
+   show. Until then (or if it fails), the flat images remain visible. */
+#gameArea.mode-3d .player img,
+#gameArea.mode-3d .enemy img {
+  display: none;
+}
+
+/* CITY ROAD */
+.city-road .road {
+  --edge: var(--cyan);
+  background: linear-gradient(
+    to right,
+    #0d2a1f 0%, #0d2a1f 10%,
+    #3d4451 10%, #3d4451 90%,
+    #0d2a1f 90%, #0d2a1f 100%
+  );
+}
+
+/* DESERT ROAD */
+.desert-road .road {
+  --edge: var(--gold);
+  background: linear-gradient(
+    to right,
+    #7a5327 0%, #7a5327 10%,
+    #4a3a2e 10%, #4a3a2e 90%,
+    #7a5327 90%, #7a5327 100%
+  );
+}
+
+/* NIGHT ROAD */
+.night-road .road {
+  --edge: var(--pink);
+  background: linear-gradient(
+    to right,
+    #050313 0%, #050313 10%,
+    #191233 10%, #191233 90%,
+    #050313 90%, #050313 100%
+  );
+}
+
+/* Glowing rail lines marking the road edges */
+.road::before,
+.road::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: var(--edge, var(--cyan));
+  box-shadow: 0 0 10px 1px var(--edge, var(--cyan));
+  z-index: 2;
+  opacity: 0.85;
+}
+.road::before { left: 10%; }
+.road::after { left: 90%; }
+
+/* Road Lines (lane markers) */
+.road-lines {
+  position: absolute;
+  left: 50%;
+  width: 10px;
+  height: 100%;
+  transform: translateX(-50%);
+  z-index: 1;
+
+  background: repeating-linear-gradient(
+    to bottom,
+    var(--cyan) 0px, var(--cyan) 50px,
+    transparent 50px, transparent 110px
+  );
+  filter: drop-shadow(0 0 4px var(--cyan));
+  opacity: 0.85;
+}
+
+/* ---------------------------------- Player ---------------------------------- */
+
+.player {
+  position: absolute;
+  width: 70px;
+  height: 120px;
+  bottom: 30px;
+  z-index: 10;
+
+  transition: left 0.1s linear, transform 0.2s;
+}
+
+.player img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 15px;
+  transform: rotate(-90deg);
+
+  filter:
+    drop-shadow(0 8px 10px rgba(0, 0, 0, 0.6))
+    drop-shadow(0 0 10px rgba(0, 229, 255, 0.55));
+}
+
+/* ---------------------------------- Enemies ---------------------------------- */
+
+.enemy {
+  position: absolute;
+  width: 70px;
+  height: 120px;
+  z-index: 8;
+}
+
+.enemy img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 15px;
+  transform: rotate(90deg);
+
+  filter:
+    drop-shadow(0 6px 8px rgba(0, 0, 0, 0.6))
+    drop-shadow(0 0 8px rgba(255, 47, 146, 0.5));
+}
+
+/* ---------------------------------- Coins ---------------------------------- */
+
+.coin {
+  position: absolute;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background: radial-gradient(circle at 30% 30%, #fff6c8, var(--gold), #b57e05);
+  color: #4a2f00;
+  font-size: 18px;
+
+  box-shadow: 0 0 18px rgba(255, 214, 10, 0.85);
+  z-index: 7;
+
+  animation: spin 0.7s linear infinite;
+}
+
+@keyframes spin {
+  from { transform: rotateY(0deg); }
+  to { transform: rotateY(360deg); }
+}
+
+/* Nitro Effect */
+
+.player.nitro-active {
+  transform: scale(1.08);
+  filter: drop-shadow(0 0 22px var(--cyan));
+}
+
+.player.nitro-active::after {
+  content: "🔥🔥";
+  position: absolute;
+  bottom: -25px;
+  left: 10px;
+  font-size: 26px;
+}
+
+/* ---------------------------------- Shield Power-Up ---------------------------------- */
+
+.shield-pickup {
+  position: absolute;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background: radial-gradient(circle at 30% 30%, #e0f7ff, var(--cyan), #0891b2);
+  color: #002b36;
+  font-size: 17px;
+
+  box-shadow: 0 0 18px rgba(0, 229, 255, 0.9);
+  z-index: 7;
+
+  animation: shield-pulse 1s ease-in-out infinite;
+}
+
+@keyframes shield-pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.14); }
+}
+
+.player.shielded::before {
+  content: "";
+  position: absolute;
+  inset: -14px;
+  border-radius: 50%;
+  border: 2px solid var(--cyan);
+  box-shadow: 0 0 16px var(--cyan), inset 0 0 16px var(--cyan);
+  z-index: 1;
+  animation: shield-ring 1s linear infinite;
+}
+
+@keyframes shield-ring {
+  0%, 100% { opacity: 0.5; transform: scale(0.95); }
+  50% { opacity: 1; transform: scale(1.08); }
+}
+
+/* ---------------------------------- Particles & Screen Shake ---------------------------------- */
+
+.particle {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 15;
+  transform: translate(-50%, -50%);
+  animation-name: particle-burst;
+  animation-timing-function: ease-out;
+  animation-fill-mode: forwards;
+}
+
+@keyframes particle-burst {
+  from {
+    transform: translate(-50%, -50%) translate(0, 0) scale(1);
+    opacity: 1;
+  }
+  to {
+    transform: translate(-50%, -50%) translate(var(--dx), var(--dy)) scale(0.2);
+    opacity: 0;
+  }
+}
+
+.particle-gold {
+  background: radial-gradient(circle, #fff6c8, var(--gold));
+  box-shadow: 0 0 8px var(--gold);
+}
+
+.particle-orange {
+  background: radial-gradient(circle, #ffd9a0, #ff5252);
+  box-shadow: 0 0 8px #ff5252;
+}
+
+.particle-cyan {
+  background: radial-gradient(circle, #d6faff, var(--cyan));
+  box-shadow: 0 0 8px var(--cyan);
+}
+
+@keyframes gamearea-shake {
+  10%, 90% { transform: translateX(-1px); }
+  20%, 80% { transform: translateX(2px); }
+  30%, 50%, 70% { transform: translateX(-5px); }
+  40%, 60% { transform: translateX(5px); }
+}
+
+#gameArea.shake {
+  animation: gamearea-shake 0.3s;
+}
+
+/* ---------------------------------- Combo Popup ---------------------------------- */
+
+#comboPopup {
+  position: absolute;
+  top: 16%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.6);
+  z-index: 25;
+  pointer-events: none;
+
+  font-family: var(--font-display);
+  font-size: clamp(16px, 5vw, 24px);
+  color: var(--gold);
+  text-shadow: 0 0 14px var(--gold), 0 0 28px var(--pink);
+  opacity: 0;
+  white-space: nowrap;
+}
+
+#comboPopup.pop {
+  animation: combo-pop 0.9s ease-out;
+}
+
+@keyframes combo-pop {
+  0% { opacity: 0; transform: translate(-50%, -35%) scale(0.5); }
+  15% { opacity: 1; transform: translate(-50%, -50%) scale(1.15); }
+  30% { transform: translate(-50%, -50%) scale(1); }
+  75% { opacity: 1; }
+  100% { opacity: 0; transform: translate(-50%, -70%) scale(0.9); }
+}
+
+/* ---------------------------------- Screens ---------------------------------- */
+
+.screen {
+  position: absolute;
+  inset: 0;
+  z-index: 50;
+
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 25px;
+
+  background: rgba(6, 3, 14, 0.93);
+  overflow: hidden;
+}
+
+.screen.active {
+  display: flex;
+}
+
+/* Signature: animated synthwave sun + grid horizon behind every overlay */
+.screen::before {
+  content: "";
+  position: absolute;
+  top: 12%;
+  left: 50%;
+  width: 220px;
+  height: 220px;
+  transform: translateX(-50%);
+  border-radius: 50%;
+  z-index: 0;
+
+  background: radial-gradient(circle, var(--gold) 0%, var(--pink) 55%, transparent 78%);
+  background-image:
+    repeating-linear-gradient(
+      to bottom,
+      transparent 0 6px,
+      rgba(6, 3, 14, 0.93) 6px 10px
+    ),
+    radial-gradient(circle, var(--gold) 0%, var(--pink) 55%, transparent 78%);
+  opacity: 0.35;
+  filter: blur(0.5px);
+}
+
+.screen::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -10%;
+  height: 55%;
+  z-index: 0;
+
+  background-image: repeating-linear-gradient(
+    90deg,
+    rgba(139, 92, 246, 0.5) 0px, rgba(139, 92, 246, 0.5) 1px,
+    transparent 1px, transparent 42px
+  );
+  transform: perspective(220px) rotateX(58deg);
+  animation: horizon-drift 2.4s linear infinite;
+  opacity: 0.55;
+}
+
+@keyframes horizon-drift {
+  from { background-position-y: 0; }
+  to { background-position-y: 42px; }
+}
+
+.screen > * {
+  position: relative;
+  z-index: 1;
+}
+
+.screen h1 {
+  margin-bottom: 18px;
+  font-family: var(--font-display);
+  font-size: clamp(20px, 7vw, 32px);
+  letter-spacing: 0.02em;
+
+  background: linear-gradient(90deg, var(--cyan), var(--violet), var(--pink));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  filter: drop-shadow(0 0 12px rgba(139, 92, 246, 0.45));
+
+  animation: neon-flicker 5s infinite;
+}
+
+@keyframes neon-flicker {
+  0%, 19%, 21%, 23%, 54%, 56%, 100% { opacity: 1; }
+  20%, 22%, 55% { opacity: 0.6; }
+}
+
+.screen p {
+  margin-bottom: 12px;
+  color: var(--text-mid);
+  font-weight: 600;
+}
+
+.screen p strong {
+  font-family: var(--font-digit);
+  color: var(--text-hi);
+}
+
+.instructions {
+  margin: 15px 0;
+  font-family: var(--font-digit);
+  font-size: 13px;
+  color: var(--text-mid);
+}
+
+.instructions p {
+  color: var(--text-mid);
+  margin-bottom: 8px;
+}
+
+/* ---------------------------------- Buttons ---------------------------------- */
+
+.main-btn {
+  position: relative;
+  overflow: hidden;
+
+  padding: clamp(11px, 3.5vw, 15px) clamp(22px, 7vw, 34px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 10px;
+
+  font-family: var(--font-ui);
+  font-size: clamp(12px, 3.4vw, 15px);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-hi);
+
+  background: linear-gradient(135deg, var(--violet), var(--pink));
+  box-shadow: 0 0 22px rgba(255, 47, 146, 0.35);
+
+  cursor: pointer;
+  touch-action: manipulation;
+  transition: transform 0.25s, box-shadow 0.25s;
+}
+
+.main-btn::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -60%;
+  width: 40%;
+  height: 100%;
+  background: linear-gradient(
+    120deg,
+    transparent, rgba(255, 255, 255, 0.35), transparent
+  );
+  transform: skewX(-20deg);
+  transition: left 0.5s ease;
+}
+
+.main-btn:hover {
+  transform: translateY(-2px) scale(1.03);
+  box-shadow: 0 0 32px rgba(0, 229, 255, 0.5);
+}
+
+.main-btn:hover::after {
+  left: 130%;
+}
+
+.main-btn:active {
+  transform: translateY(0) scale(0.98);
+}
+
+.main-btn-ghost {
+  background: transparent;
+  border: 1px solid var(--line);
+  box-shadow: none;
+}
+
+.main-btn-ghost:hover {
+  border-color: var(--cyan);
+  box-shadow: 0 0 20px rgba(0, 229, 255, 0.35);
+}
+
+.game-over-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 6px;
+}
+
+.game-over {
+  color: var(--pink) !important;
+  -webkit-text-fill-color: var(--pink);
+  filter: drop-shadow(0 0 16px rgba(255, 47, 146, 0.7)) !important;
+}
+
+/* ---------------------------------- New High Score Banner ---------------------------------- */
+
+.high-score-banner {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+
+  margin-bottom: 14px;
+  padding: 6px 16px;
+  border-radius: 999px;
+
+  font-family: var(--font-ui);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #241900;
+
+  background: linear-gradient(90deg, var(--gold), #ffef9e, var(--gold));
+  background-size: 200% 100%;
+  box-shadow: 0 0 24px rgba(255, 214, 10, 0.65);
+
+  animation: high-score-shine 1.6s linear infinite, high-score-pop 0.5s ease;
+}
+
+@keyframes high-score-shine {
+  to { background-position: -200% 0; }
+}
+
+@keyframes high-score-pop {
+  from { transform: scale(0.7); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+/* ---------------------------------- Leaderboard ---------------------------------- */
+
+.leaderboard {
+  width: 100%;
+  max-width: 280px;
+  margin: 10px 0 4px;
+}
+
+.leaderboard h2 {
+  font-family: var(--font-ui);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  margin-bottom: 8px;
+  text-align: center;
+}
+
+.leaderboard ol {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.leaderboard-item {
+  display: grid;
+  grid-template-columns: 28px 1fr auto;
+  align-items: center;
+  gap: 8px;
+
+  padding: 6px 12px;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+
+  font-family: var(--font-digit);
+  font-size: 12px;
+}
+
+.leaderboard-item.is-new {
+  border-color: var(--gold);
+  background: rgba(255, 214, 10, 0.1);
+  box-shadow: 0 0 14px rgba(255, 214, 10, 0.35);
+}
+
+.lb-rank {
+  color: var(--violet);
+  font-weight: 700;
+  text-align: left;
+}
+
+.lb-score {
+  color: var(--text-hi);
+  text-align: left;
+  font-size: 14px;
+}
+
+.lb-meta {
+  color: var(--text-dim);
+  font-size: 10px;
+  text-align: right;
+  white-space: nowrap;
+}
+
+.leaderboard-empty {
+  text-align: center;
+  color: var(--text-dim);
+  font-size: 12px;
+  padding: 6px 0;
+}
+
+/* ---------------------------------- Level Banner ---------------------------------- */
+
+.level-screen {
+  position: absolute;
+  inset: 0;
+  z-index: 40;
+
+  display: none;
+  justify-content: center;
+  align-items: center;
+
+  background: rgba(0, 0, 0, 0.35);
+  pointer-events: none;
+}
+
+.level-screen.active {
+  display: flex;
+}
+
+#levelText {
+  font-family: var(--font-display);
+  font-size: clamp(26px, 9vw, 40px);
+  letter-spacing: 0.04em;
+
+  color: var(--gold);
+  text-shadow: 0 0 20px rgba(255, 214, 10, 0.85), 0 0 40px rgba(255, 47, 146, 0.4);
+
+  animation: levelAnimation 1s ease;
+}
+
+@keyframes levelAnimation {
+  from { transform: scale(0.5); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+/* ---------------------------------- Collision Flash ---------------------------------- */
+
+#collisionEffect {
+  position: absolute;
+  inset: 0;
+  z-index: 30;
+  opacity: 0;
+  pointer-events: none;
+
+  background: radial-gradient(circle, rgba(255, 47, 146, 0.55), rgba(139, 0, 40, 0.55));
+}
+
+#collisionEffect.active {
+  animation: crash 0.3s;
+}
+
+@keyframes crash {
+  50% { opacity: 0.75; }
+}
+
+/* ---------------------------------- Mobile Controls ---------------------------------- */
+
+.mobile-controls {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+
+  padding: 16px;
+  background: var(--void);
+}
+
+.mobile-controls button {
+  width: 75px;
+  height: 55px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+
+  background: var(--panel-2);
+  color: var(--text-hi);
+  font-size: 22px;
+  cursor: pointer;
+
+  transition: 0.2s ease;
+}
+
+.mobile-controls button:active {
+  transform: scale(0.92);
+}
+
+#leftBtn:hover,
+#rightBtn:hover {
+  border-color: var(--cyan);
+  box-shadow: 0 0 14px rgba(0, 229, 255, 0.5);
+}
+
+#nitroBtn {
+  background: linear-gradient(135deg, var(--violet), var(--pink));
+  border: none;
+  box-shadow: 0 0 16px rgba(255, 47, 146, 0.4);
+}
+
+/* ---------------------------------- Footer ---------------------------------- */
+
+.footer {
+  text-align: center;
+  padding: 10px 0 4px;
+
+  font-family: var(--font-ui);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  background: var(--void);
+}
+
+/* ---------------------------------- Responsive ---------------------------------- */
+
+/*
+  Strategy: the desktop rule above gives the game a fixed-height "arcade
+  cabinet" card (650px tall, capped at 520px wide). Below, ANY device
+  that is narrow OR short — phones in portrait, phones in landscape,
+  small tablets — drops the card chrome and goes full-bleed, with
+  #gameArea flexing to fill exactly whatever space is left after the
+  header/nitro bar/controls/footer. That one flex rule replaces fragile
+  calc()-based height guesses and works the same regardless of
+  orientation or address-bar height changes.
+*/
+
+@media (max-width: 560px), (max-height: 640px), (pointer: coarse) {
+  body {
+    align-items: stretch;
+  }
+
+  .game-wrapper {
+    max-width: none;
+    width: 100%;
+    min-height: 100vh;
+    min-height: 100svh;
+
+    border-radius: 0;
+    border: none;
+    box-shadow: none;
+  }
+
+  #gameArea {
+    flex: 1 1 auto;
+    height: auto;
+    min-height: 220px;
+  }
+
+  .game-header {
+    grid-template-columns: repeat(4, 1fr) 40px 40px;
+    padding: 10px 8px;
+    gap: 6px;
+  }
+
+  .nitro-container {
+    padding: 7px 12px;
+  }
+}
+
+/* Very small phones */
+@media (max-width: 380px) {
+  .game-header {
+    gap: 4px;
+    padding: 8px 6px;
+  }
+
+  .stat-box span {
+    font-size: 8px;
+  }
+
+  .stat-box strong {
+    font-size: 13px;
+  }
+
+  .nitro-container span {
+    font-size: 10px;
+  }
+
+  .mobile-controls {
+    gap: 12px;
+    padding: 10px;
+  }
+
+  .mobile-controls button {
+    width: 62px;
+    height: 48px;
+    font-size: 20px;
+  }
+}
+
+/* Short screens — mainly phones in landscape, where vertical space is
+   the scarce resource regardless of how wide the screen is */
+@media (max-height: 500px) {
+  .game-header {
+    padding: 6px 8px;
+  }
+
+  .nitro-container {
+    padding: 4px 12px;
+  }
+
+  .mobile-controls {
+    padding: 6px;
+  }
+
+  .mobile-controls button {
+    width: 56px;
+    height: 40px;
+    font-size: 18px;
+  }
+
+  .footer {
+    display: none;
+  }
+
+  .screen h1 {
+    font-size: clamp(18px, 6vw, 24px);
+    margin-bottom: 10px;
+  }
+
+  .screen p {
+    margin-bottom: 6px;
+  }
+
+  .instructions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 4px 14px;
+    margin: 10px 0;
+  }
+
+  .instructions p {
+    margin-bottom: 0;
+  }
+
+  .main-btn {
+    padding: 10px 24px;
+    font-size: 13px;
+  }
+
+  .screen::before {
+    width: 120px;
+    height: 120px;
+  }
+}
+
+/* Touch devices keep the on-screen D-pad; anything driven by a mouse
+   or trackpad doesn't need it taking up space */
+@media (hover: hover) and (pointer: fine) {
+  .mobile-controls {
+    display: none;
+  }
+}
+
+/* Roomy desktop monitors get a slightly larger cabinet. Restricted to
+   mouse-driven displays — a touch tablet that happens to be this big
+   still needs the flexible layout above, since it also carries the
+   on-screen D-pad. */
+@media (min-width: 900px) and (min-height: 760px) and (hover: hover) and (pointer: fine) {
+  .game-wrapper {
+    max-width: 560px;
+  }
+
+  #gameArea {
+    height: 700px;
+  }
+}
+
+/* ---------------------------------- Accessibility ---------------------------------- */
+
+button:focus-visible {
+  outline: 2px solid var(--cyan);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #nitroFill,
+  .coin,
+  .screen::after,
+  .screen h1,
+  .main-btn::after,
+  .shield-pickup,
+  .player.shielded::before,
+  .particle,
+  #gameArea.shake,
+  #comboPopup.pop,
+  .high-score-banner {
+    animation: none !important;
+    transition: none !important;
+  }
+}

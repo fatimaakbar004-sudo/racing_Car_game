@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="description" content="Ultimate Car Racing — dodge traffic, grab coins, and burn nitro across three tracks." />
+    <title>Ultimate Car Racing Game</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Audiowide&family=Rajdhani:wght@500;600;700&family=Share+Tech+Mono&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="style.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  </head>
+
+  <body>
+    <div class="game-wrapper">
+      <!-- Game Header -->
+      <div class="game-header">
+        <div class="stat-box">
+          <span>🏆 Score</span>
+          <strong id="score">0</strong>
+        </div>
+
+        <div class="stat-box">
+          <span>🪙 Coins</span>
+          <strong id="coins">0</strong>
+        </div>
+
+        <div class="stat-box">
+          <span>🏁 Level</span>
+          <strong id="level">1</strong>
+        </div>
+
+        <div class="stat-box">
+          <span>❤️ Lives</span>
+          <strong id="lives">3</strong>
+        </div>
+
+        <button id="pauseBtn" aria-label="Pause game">⏸</button>
+        <button id="musicBtn" aria-label="Toggle music">🎵</button>
+      </div>
+
+      <div class="checker-strip"></div>
+
+      <!-- Nitro Meter -->
+      <div class="nitro-container">
+        <span>⚡ NITRO</span>
+        <div class="nitro-bar">
+          <div id="nitroFill"></div>
+        </div>
+      </div>
+
+      <!-- Game Area -->
+      <div id="gameArea" class="city-road">
+        <div class="road">
+          <div id="roadLines" class="road-lines"></div>
+
+          <!-- 3D car layer (Three.js). If WebGL/Three.js is unavailable,
+               script.js leaves this canvas empty and the flat fallback
+               images below stay visible instead. -->
+          <canvas id="carCanvas"></canvas>
+
+          <!-- Player Car (hitbox + fallback image) -->
+          <div id="player" class="player">
+            <img
+              src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=300&q=80"
+              alt="Player Car"
+            />
+          </div>
+
+          <!-- Screens -->
+
+          <div id="startScreen" class="screen active">
+            <h1>🚗 CAR RACING</h1>
+            <p>Collect coins, avoid cars, and use Nitro!</p>
+
+            <div class="instructions">
+              <p>⬅️ ➡️ Move Car</p>
+              <p>👆 Swipe to Steer</p>
+              <p>⚡ N / Tap = Nitro</p>
+              <p>🪙 Collect Coins</p>
+              <p>🛡️ Shield = Ram Through</p>
+              <p>SPACE = Pause</p>
+            </div>
+
+            <button id="startBtn" class="main-btn">▶ Start Race</button>
+          </div>
+
+          <!-- Pause Screen -->
+
+          <div id="pauseScreen" class="screen">
+            <h1>⏸ Paused</h1>
+            <button id="resumeBtn" class="main-btn">▶ Resume</button>
+          </div>
+
+          <!-- Level Screen -->
+
+          <div id="levelScreen" class="level-screen">
+            <h1 id="levelText">LEVEL 1</h1>
+          </div>
+
+          <!-- Game Over -->
+
+          <div id="gameOverScreen" class="screen">
+            <h1 class="game-over">💥 Game Over</h1>
+
+            <div id="newHighScoreBanner" class="high-score-banner">
+              🏆 New High Score!
+            </div>
+
+            <p>Final Score: <strong id="finalScore">0</strong></p>
+            <p>Coins Collected: <strong id="finalCoins">0</strong></p>
+            <p>Highest Score: <strong id="highScore">0</strong></p>
+
+            <div class="leaderboard">
+              <h2>Top Runs</h2>
+              <ol id="leaderboardList"></ol>
+            </div>
+
+            <div class="game-over-actions">
+              <button id="restartBtn" class="main-btn">🔄 Play Again</button>
+              <button id="shareBtn" class="main-btn main-btn-ghost">📤 Share Score</button>
+            </div>
+          </div>
+
+          <!-- Effects -->
+
+          <div id="comboPopup"></div>
+          <div id="collisionEffect"></div>
+        </div>
+      </div>
+
+      <!-- Mobile Controls -->
+
+      <div class="mobile-controls">
+        <button id="leftBtn" aria-label="Move left">⬅️</button>
+        <button id="nitroBtn" aria-label="Activate nitro">⚡</button>
+        <button id="rightBtn" aria-label="Move right">➡️</button>
+      </div>
+
+      <!-- Music: generated live in script.js via the Web Audio API
+           (an original synthwave loop + SFX), so there's no external
+           audio file to fetch, license, or go stale. -->
+
+      <div class="checker-strip"></div>
+      <p class="footer">Ultimate Car Racing Game 🚗💨</p>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
